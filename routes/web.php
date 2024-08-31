@@ -1,11 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+//admin
+Route::middleware('admin')->group(function () {
+    Route::resource('admin', AdminController::class);
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('orders', [AdminController::class, 'orders'])->name('admin.orders');
+});
