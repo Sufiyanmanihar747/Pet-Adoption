@@ -31,6 +31,7 @@
                 position: relative;
                 overflow: hidden;
                 border-radius: 10px;
+                height: 220px;
             }
 
             .category-card .animal-icons {
@@ -65,36 +66,6 @@
                 font-weight: 600;
             }
         </style>
-
-        <!-- Navbar -->
-        {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="logo.png" alt="PetPalz" width="30"> PetPalz</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Our program</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Adopt now</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> --}}
 
         <!-- Hero Section -->
         <section class="hero-section bg-dark text-light py-5">
@@ -163,6 +134,48 @@
                                 <!-- Add animal icons here -->
                                 <img src="bird1.jpg" alt="Bird" class="rounded-circle">
                                 <img src="bird2.jpg" alt="Bird" class="rounded-circle">
+                                <!-- More images... -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="category-card bg-pink text-light p-4 rounded">
+                            <h3>Birds</h3>
+                            <p>Adopt a beautiful and intelligent avian friend.</p>
+                            <a href="#" class="btn btn-outline-light">Explore <i
+                                    class="fas fa-arrow-right"></i></a>
+                            <div class="animal-icons">
+                                <!-- Add animal icons here -->
+                                <img src="bird1.jpg" alt="Bird" class="rounded-circle">
+                                <img src="bird2.jpg" alt="Bird" class="rounded-circle">
+                                <!-- More images... -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="category-card bg-purple text-light p-4 rounded">
+                            <h3>Dogs</h3>
+                            <p>Adopt a furry friend and loyal companion.</p>
+                            <a href="#" class="btn btn-outline-light">Explore <i
+                                    class="fas fa-arrow-right"></i></a>
+                            <div class="animal-icons">
+                                <!-- Add animal icons here -->
+                                <img src="dog1.jpg" alt="Dog" class="rounded-circle">
+                                <img src="dog2.jpg" alt="Dog" class="rounded-circle">
+                                <!-- More images... -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="category-card bg-yellow text-dark p-4 rounded">
+                            <h3>Reptiles</h3>
+                            <p>Adopt a scaly and fascinating reptile.</p>
+                            <a href="#" class="btn btn-outline-dark">Explore <i
+                                    class="fas fa-arrow-right"></i></a>
+                            <div class="animal-icons">
+                                <!-- Add animal icons here -->
+                                <img src="reptile1.jpg" alt="Reptile" class="rounded-circle">
+                                <img src="reptile2.jpg" alt="Reptile" class="rounded-circle">
                                 <!-- More images... -->
                             </div>
                         </div>

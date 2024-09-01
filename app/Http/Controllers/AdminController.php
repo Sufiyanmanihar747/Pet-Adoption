@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -11,8 +13,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        dd("this si admin controller");
-        return view('admin.products');
+        dump("this si admin controller");
+        $users = User::all();
+        return view('admin.users', compact('users'));
     }
 
     /**
@@ -20,7 +23,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -28,7 +31,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+            'password' => 'required|string|min:8',
+            'role' => 'required|string',
+        ]);
+
+        $data = $request->only(['name', 'email', 'password', 'role']);
+        User::create($data);
+        return redirect('admin');
     }
 
     /**
@@ -36,7 +49,8 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $admin = User::find($id);
+        return view('admin.show', compact('admin'));
     }
 
     /**
@@ -44,7 +58,8 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.create', compact('user'));
     }
 
     /**
@@ -60,6 +75,11 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+        return redirect('admin');
+    }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
     }
 }

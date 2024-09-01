@@ -41,7 +41,7 @@ class LoginController extends Controller
     {
         // dd($request);
         if ($user->hasRole('admin')) {
-            dump("this is login controller");
+            // dd("this is login controller");
             return redirect()->route('admin.index');
         } elseif ($user->hasRole('owner')) {
             return redirect()->route('home');

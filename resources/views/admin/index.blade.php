@@ -12,8 +12,7 @@
     {{-- icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     {{-- datatable --}}
-    <link rel="stylesheet" href="{{ asset('datatables.min.css') }}">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -169,7 +168,7 @@
         @include('admin.header')
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <img src="{{ asset('logos/trendbazaar-high-resolution-logo-transparent.png') }}" style="width: 130px"
+                <img src="" style=""
                     alt="">
                 <button class="btn btn-dark" id="togglebtn" onclick="toggleSidebar()">&#9776;</button>
             </nav>
@@ -187,7 +186,7 @@
     </script>
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('datatables.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
     <script>
         // sweetalert
         document.addEventListener('DOMContentLoaded', function() {
@@ -232,6 +231,7 @@
                 scrollY: '410px',
             });
         });
+
 
         // sidebar
         function toggleSidebar() {

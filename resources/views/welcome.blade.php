@@ -34,12 +34,15 @@
 
         @include('layouts.species')
 
-        <!--- #PRODUCT-->
+        <!--- #thought-->
+        @include('layouts.love')
 
+        @include('layouts.show')
         {{-- @include('layouts.products') --}}
 
         {{-- HORIZONTAL --}}
-        {{-- @include('layouts.horizontalscroll') --}}
+        @include('layouts.horizontalscroll')
+
 
         {{-- SUBSCRIBE --}}
 

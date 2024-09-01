@@ -8,7 +8,7 @@
                 <div class="col-md-3 mb-4">
                     <div class="box" id="box-1">
                         <h4>Orders</h4>
-                        <a href="{{ route('order.index') }}">
+                        <a href="">
                             <p class="box-value" id="box-value-1">
                                 {{-- {{Auth::user()->products->count() }} --}}
                             </p>
