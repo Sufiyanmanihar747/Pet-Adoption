@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        dump("this si admin controller");
+        // dump("this si admin controller");
         $users = User::all();
         return view('admin.users', compact('users'));
     }
@@ -23,7 +23,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.admin_create');
     }
 
     /**
@@ -59,7 +59,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $user = User::find($id);
-        return view('admin.create', compact('user'));
+        return view('admin.admin_create', compact('user'));
     }
 
     /**

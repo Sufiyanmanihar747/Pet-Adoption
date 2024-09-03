@@ -26,9 +26,12 @@
 
         {{-- @include('layouts.caresole') --}}
 
-        {{-- SERVICES --}}
 
-        @include('layouts.header')
+        @include('layouts.hero')
+
+        {{-- CATEGORY --}}
+
+        @include('layouts.category')
 
         {{-- SPECIES --}}
 

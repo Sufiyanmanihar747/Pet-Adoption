@@ -14,20 +14,31 @@
         </li>
         <li>
             <a href="{{ route('admin.index') }}" class="nav-link text-white">
-            Users
+            All Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.create') }}" class="nav-link" aria-current="page">
+                Add User
             </a>
         </li>
         <li>
             <a href="{{ route('pets.index') }}" class="nav-link text-white">
-            Pets
+           All Pets
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('pets.create') }}" class="nav-link text-white">
+            Add Pets
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="{{ route('admin.create') }}" class="nav-link" aria-current="page">
-                Add Pets
+            <a href="{{ route('category.index') }}" class="nav-link" aria-current="page">
+                All Category
             </a>
         </li>
+
         <li class="nav-item">
             <a href="{{ route('category.create') }}" class="nav-link" aria-current="page">
                 Add Category
