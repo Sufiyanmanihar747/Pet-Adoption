@@ -100,15 +100,14 @@
             color: #777;
         }
 
-        /* .btn-primary {
-                    background-color: #f76329;
-                    border-color: #f76329;
-                }
-
-                .btn-primary:hover {
-                    background-color: #e24d19;
-                    border-color: #e24d19;
-                } */
+        .image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            width: 544px;
+            border-radius: 3px;
+        }
     </style>
 
     <div class="login-container my-5">
@@ -119,14 +118,10 @@
             <div class="circle medium-circle shade4"></div>
             <div class="circle small-circle shade5"></div>
         </div>
-        <div class="card" id="login-card">
-            <div class="card-header bg-success">
-                <h3>{{ __('Login') }}</h3>
-            </div>
-            <div class="card-body">
+        <div class="d-flex bg-white mt-5 rounded" id="login-card">
+            <div class="card-body d-flex justify-content-center flex-column">
                 <form method="POST" action="{{ route('login') }}" onsubmit="return validateForm()">
                     @csrf
-
                     <div class="form-group">
                         <label for="email"><b>Email:</b></label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -164,8 +159,11 @@
                     @endif
                 </form>
                 <p class="signup-link">Don't have an account? <a href="{{ route('register') }}"
-                        class="text-primary"><b>Sign up
-                            here</b></a></p>
+                        class="text-primary"><b>Sign up here</b></a></p>
+            </div>
+            <div class="image">
+                <img src="{{ url('storage/images/Yellow-Lab-High-Five.jpg') }}" alt="">
+                <h3 class="d-none">{{ __('Login') }}</h3>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,7 +27,8 @@ class HomeController extends Controller
     {
         // dump('this is home controller');
         $categories = Category::all();
-        return view('welcome',compact('categories'));
+        $pets = Pet::all();
+        return view('welcome',compact('categories','pets'));
     }
 
     public function category($category)

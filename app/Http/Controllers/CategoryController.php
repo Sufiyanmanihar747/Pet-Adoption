@@ -35,9 +35,10 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $originalName = $image->getClientOriginalName();
-            $image->storeAs('public/images', $originalName);
+            $uniqueName = uniqid() . '_' . time() . '.' . $originalName;
+            $image->storeAs('public/images', $uniqueName);
         }
-        $data['image'] = $originalName;
+        $data['image'] = $uniqueName;
         // dd($data);
         Category::create($data);
         return redirect('category');
@@ -72,13 +73,13 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $originalName = $image->getClientOriginalName();
-            // dd($originalName);
-            $image->storeAs('public/images', $originalName);
+            $uniqueName = uniqid() . '_' . time() . '.' . $originalName;
+            $image->storeAs('public/images', $uniqueName);
             $path = public_path('storage/images/' . $currentImages);
             if (File::exists($path)) {
                 File::delete($path);
             }
-            $data['image'] = $originalName;
+            $data['image'] = $uniqueName;
         } else {
             $data['image'] = $currentImages;
         }

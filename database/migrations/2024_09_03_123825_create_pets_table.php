@@ -16,17 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('breed');
             $table->string('age');
-            $table->string('type'); 
-            $table->text('description')->nullable();
+            $table->text('description');
+            $table->enum('gender', ['male','female']);
             $table->string('image')->nullable();
-            $table->boolean('adopted')->default(false);
+            $table->enum('status', ['adopted','available'])->default('available');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-
+            $table->unsignedBigInteger('species');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('species')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

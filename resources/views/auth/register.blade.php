@@ -57,6 +57,35 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">{{ __('Phone') }}</label>
+                                    <input id="phone" type="tel"
+                                        class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                        value="{{ old('phone') }}" required autocomplete="phone">
+                                    @error('phone')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="role" class="form-label">{{ __('Are You an Owner?') }}</label>
+                                    <select id="role" class="form-control @error('role') is-invalid @enderror"
+                                        name="role" required>
+                                        <option value="">Select </option>
+                                        <option value="owner">Yes</option>
+                                        <option value="user">No</option>
+                                    </select>
+
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
                             </div>

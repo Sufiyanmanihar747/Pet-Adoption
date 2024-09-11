@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
         'role',
     ];
 
@@ -48,5 +49,9 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->role === $role;
+    }
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
     }
 }
