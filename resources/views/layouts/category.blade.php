@@ -1,7 +1,8 @@
  <!-- Categories Section -->
- <section class="categories-section py-5">
+ <section class="categories-section py-5" style="background-color: #8a2be2">
      {{-- @dd($categories) --}}
      <div class="container">
+        <center><h2 class="text-white">All Categories</h2></center>
          <div class="row">
              @foreach ($categories as $category)
              <div class="col-md-4 mb-4">

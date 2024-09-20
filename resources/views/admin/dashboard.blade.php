@@ -6,34 +6,32 @@
             {{-- <h2>Main Content</h2> --}}
             <div class="row">
                 <div class="col-md-3 mb-4">
-                    <div class="box" id="box-1">
-                        <h4>Orders</h4>
-                        <a href="">
+                    <a href="{{ route('admin.index') }}" class="nav-link">
+                        <div class="box" id="box-1">
+                            <h4>Total Users</h4>
                             <p class="box-value" id="box-value-1">
-                                {{-- {{Auth::user()->products->count() }} --}}
+                                {{ Auth::user()->count() }}
                             </p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="box" id="box-2">
-                        <h4>Total Products</h4>
-                        {{-- <p class="box-value" id="box-value-2">{{ Auth::user()->products->count() }}</p> --}}
-                    </div>
-
+                    <a href="{{ route('pets.index') }}" class="nav-link">
+                        <div class="box" id="box-2">
+                            <h4>Total Pets</h4>
+                            <p class="box-value" id="box-value-2">{{ DB::table('pets')->count() }}</p>
+                        </div>
+                    </a>
                 </div>
-                {{-- <div class="col-md-3 mb-4">
-          <div class="box" id="box-3">
-            <h4>Revenue</h4>
-            <p class="box-value" id="box-value-3">789</p>
-          </div>
-        </div>
-        <div class="col-md-3 mb-4">
-          <div class="box" id="box-4">
-            <h4></h4>
-            <p class="box-value" id="box-value-4">101</p>
-          </div>
-        </div> --}}
+                <div class="col-md-3 mb-4">
+                    <a href="{{ route('category.index') }}" class="nav-link">
+                        <div class="box" id="box-2">
+                            <h4>Total Species</h4>
+                            <p class="box-value" id="box-value-2">{{ DB::table('categories')->count() }}</p>
+                        </div>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>

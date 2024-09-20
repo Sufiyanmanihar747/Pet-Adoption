@@ -2,6 +2,7 @@
     <style>
         .pets-section {
             padding: 40px 0;
+            /* background-color:#8a2be2; */
         }
 
         .filters {
@@ -49,8 +50,12 @@
             margin-bottom: 20px;
             background-color: white;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            height: 476px;
+            height: 400px !important;
 
+        }
+        .pet-card:hover{
+            background-color: #8a2be2;
+            color: white;
         }
 
         .pet-card img {
@@ -145,25 +150,19 @@
                     @foreach ($pets as $pet)
                         <div class="col-md-4">
                             <div class="card pet-card">
-                                <img src="{{url('storage/images/' . $pet->image)}}" class="card-img-top" alt="Max">
+                                @php
+                                $imageArray = explode(',', $pet->image);
+                              @endphp
+                              <img src="{{ url('storage/images/' . $imageArray[0]) }}" alt="{{ $pet->title }}" loading="lazy"
+                                class="card-img-top">
                                 <div class="card-body">
-                                    <span class="posted-date">Posted on: {{$pet->created_at}}</span>
                                     <h5 class="card-title">{{$pet->name}}</h5>
-                                    <p class="card-text">Male, Adolescence<br>New Delhi, Delhi</p>
+                                    {{-- <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }}, {{ $pet->address->state }}</p> --}}
                                     <p class="contact-details">
-                                        <strong>Contact details -</strong><br>
-                                        Name: {{$pet->users->name}}<br>
-                                        Number: <a href="#">Contact Now</a>
+                                        Species: {{ $pet->categories->name }}<br>
+                                        Breed: {{ $pet->breed }} <br>
+                                        Age: {{$pet->age}}
                                     </p>
-                                    <div class="share">
-                                        <strong>Share with friends -</strong><br>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-whatsapp"></i></a>
-                                    </div>
-                                    <a href="#" class="btn btn-link">See more details</a>
                                 </div>
                             </div>
                         </div>

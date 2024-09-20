@@ -12,7 +12,7 @@
             }
 
             .hero-section .program-card img {
-                width: 100%;
+                width: 70%;
                 height: auto;
                 border-radius: 10px;
             }
@@ -24,7 +24,7 @@
             }
 
             .categories-section {
-                background-color: #111;
+                /* background-color: #111; */
             }
 
             .category-card {
@@ -90,7 +90,7 @@
         </style>
 
         <!-- Hero Section -->
-        <section class="hero-section bg-dark text-light py-5">
+        <section class="hero-section bg-white text-dark py-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -98,15 +98,15 @@
                         <p class="lead">Adopt a furry companion and add them to your family as your new best friend!
                         </p>
                         <div>
-                            <a href="#" class="btn btn-light me-3">Adopt now</a>
-                            <a href="#" class="btn btn-outline-light">Donate</a>
+                            <a href="#" class="btn btn-dark me-3">Adopt now</a>
+                            <a href="#" class="btn btn-outline-dark">Donate</a>
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
                         <div class="program-card">
-                            <img src="cat.jpg" alt="Adopted Cat" class="img-fluid rounded">
+                            <img src="{{ asset('logos/3d-dog-and-human.png') }}" alt="Adopted Cat" class="img-fluid rounded">
                             <h5 class="mt-4">From abandoned to adored: The journey of a homeless pet</h5>
-                            <a href="#" class="btn btn-light mt-2">Watch how our program works <i
+                            <a href="#" class="btn btn-dark mt-2">Watch how our program works <i
                                     class="fas fa-play-circle"></i></a>
                         </div>
                     </div>

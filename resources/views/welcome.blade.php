@@ -33,18 +33,20 @@
 
         @include('layouts.category')
 
+        @include('layouts.love')
+
+        @include('layouts.show')
+
         {{-- SPECIES --}}
 
         @include('layouts.species')
 
         <!--- #thought-->
-        @include('layouts.love')
 
-        @include('layouts.show')
         {{-- @include('layouts.products') --}}
 
         {{-- HORIZONTAL --}}
-        @include('layouts.horizontalscroll')
+        {{-- @include('layouts.horizontalscroll') --}}
 
 
         {{-- SUBSCRIBE --}}

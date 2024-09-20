@@ -144,18 +144,17 @@
 
         .box:hover {
             transform: scale(1.05);
-            background-color: lime;
+            background-color: #007bff;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
         .box h4 {
-            color: #343a40;
             margin-bottom: 10px;
         }
 
         .box-value {
             font-size: 24px;
-            color: #007bff;
             font-weight: bold;
         }
     </style>
@@ -167,9 +166,8 @@
         {{-- HEADER --}}
         @include('admin.header')
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <img src="" style=""
-                    alt="">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <img src="{{ asset('logos/logo4.png') }}" style="width: 75px;overflow: hidden;" alt="">
                 <button class="btn btn-dark" id="togglebtn" onclick="toggleSidebar()">&#9776;</button>
             </nav>
             <div class="container-fluid">

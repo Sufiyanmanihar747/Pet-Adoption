@@ -55,15 +55,31 @@
             </div>
         </div>
 
-        <div class="form-row justify-content-center" style="gap: 0px">
-            <div class="form-group col-md-10">
+        <div class="form-row justify-content-center" style="gap: 35px">
+            <div class="form-group col-md-5">
                 {{ html()->label('Role', 'role')->class('font-weight-bold m-0') }}
                 {{ html()->select(
                         'role',
                         ['admin' => 'Super Admin', 'admin' => 'Admin', 'user' => 'User'],
                         isset($user) ? $user->role : null,
                     )->class('form-control h-75')->placeholder('Select Role') }}
+                @error('role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
+
+            <div class="form-group col-md-5">
+                {{ html()->label('Phone no', 'phone')->class('font-weight-bold m-0') }}
+                {{ html()->input('tel', 'phone', isset($user) ? $user->phone : null)->class('h-75 form-control' . ($errors->has('phone') ? ' is-invalid' : ''))->placeholder('Enter phone no')->required()->attribute('autocomplete', 'phone') }}
+                @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+
         </div>
 
         <div class="form-row justify-content-center" style="gap: 35px">

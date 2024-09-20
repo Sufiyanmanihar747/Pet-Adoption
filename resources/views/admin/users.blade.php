@@ -7,6 +7,7 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Role</th>
+                <th class="text-center">Phone no</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
                     <td class="text-center"><a href="{{ route('admin.show', $user->id) }}">{{ $user->name }}</a></td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->role }}</td>
+                    <td class="text-center">{{ $user->phone }}</td>
                     <td class="text-center d-flex gap-2">
                         <a href="{{ route('admin.edit', [$user->id]) }}" class="btn btn-outline-success p-1 px-2">Edit</a>
                         <form id="delete-form-{{ $user->id }}" action="{{ route('admin.destroy', $user->id) }}"

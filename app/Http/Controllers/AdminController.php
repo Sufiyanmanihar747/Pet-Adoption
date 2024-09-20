@@ -37,9 +37,11 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'password' => 'required|string|min:8',
             'role' => 'required|string',
+            'phone' => ['required', 'digits:10'],
+
         ]);
 
-        $data = $request->only(['name', 'email', 'password', 'role']);
+        $data = $request->only(['name', 'email', 'password', 'role','phone']);
         User::create($data);
         return redirect('admin');
     }
@@ -49,8 +51,8 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        $admin = User::find($id);
-        return view('admin.show', compact('admin'));
+        $user = User::find($id);
+        return view('admin.show', compact('user'));
     }
 
     /**

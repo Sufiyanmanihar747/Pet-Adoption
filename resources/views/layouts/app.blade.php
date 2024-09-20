@@ -301,10 +301,21 @@
         .razorpay-payment-button {
             display: none;
         }
+        .btn-dark {
+            background-color: #8a2be2 !important;
+
+        }
+        h1{
+            color: #8a2be2 !important;
+        }
+        .text-purple{
+            color: #8a2be2 !important;
+
+        }
     </style>
 </head>
 
-<body style="background-color: #111">
+<body class="bg-white">
     <div id="app">
         {{-- ofcanvas of user --}}
 
@@ -339,9 +350,8 @@
 
             <nav class="navbar navbar-expand-lg p-0 px-4"
                 style="height: 70px;position: fixed; z-index: 1000;width: 100vw;backdrop-filter: blur(10px);background-color: #ffffff69;">
-                {{-- <a class="navbar-brand p-0" href="{{ route('home.index') }}"><img
-                    src="{{ asset('logos/trendbazaar-high-resolution-logo-transparent.png') }}"
-                    style="width: 144px;overflow: hidden;" alt="" class="mt-2"></a> --}}
+                <a class="navbar-brand p-0 ml-5" href=""><img src="{{ asset('logos/logo4.png') }}"
+                        style="width: 110px;overflow: hidden;" alt="" class="mt-2"></a>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav ml-auto gap-5">
                         <li class="nav-item active">

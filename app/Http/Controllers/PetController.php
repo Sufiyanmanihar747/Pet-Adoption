@@ -56,7 +56,7 @@ class PetController extends Controller
             foreach ($imageArray as  $image) {
                 $originalName = $image->getClientOriginalName();
                 $uniqueName = uniqid() . '_' . time() . '.' . $originalName;
-                $image->storeAs('public/image', $uniqueName);
+                $image->storeAs('public/images', $uniqueName);
                 $final[] = $uniqueName;
             }
             $imgstring = implode(',', $final);

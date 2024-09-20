@@ -1,22 +1,29 @@
 @extends('admin.index')
 
 @section('content')
+    <div class="d-flex justify-content-end">
+        <a href="{{ route('pets.create') }}" class="btn btn-success">Add Pets</a>
+    </div>
     <div class="container" style="margin-top: 3rem!important;">
         {{-- @dd($pets) --}}
+
         <div class="row">
             <!-- Pet Card -->
             @foreach ($pets as $pet)
-                <div class="col-md-4">
+                <div class="col-md-4 mt-1">
                     <div class="card pet-card">
-                        <img src="{{ url('storage/images/' . $pet->image) }}" class="card-img-top" style="height: 200px;"
-                            alt="Max">
+                        @php
+                        $imageArray = explode(',', $pet->image);
+                      @endphp
+                      <img src="{{ url('storage/images/' . $imageArray[0]) }}" alt="{{ $pet->image }}" loading="lazy" class="card-img-top" style="height: 200px;">
                         <div class="card-body">
-                            <span class="posted-date">Posted on: {{ $pet->created_at }}</span>
                             <h5 class="card-title">{{ $pet->name }}</h5>
+                            {{-- <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }},
+                                {{ $pet->address->state }}</p> --}}
                             <p class="contact-details">
-                                <strong>Contact details -</strong><br>
-                                {{ $pet->categories->name }} {{ $pet->users->name }}<br>
-                                Contact Now: <a href="#">{{ $pet->users->phone }}</a>
+                                Species: {{ $pet->categories->name }}<br>
+                                Breed: {{ $pet->breed }} <br>
+                                Age: {{ $pet->age }}
                             </p>
                             <div class="d-flex justify-content-start gap-2">
                                 <a href="{{ route('pets.edit', $pet->id) }}"

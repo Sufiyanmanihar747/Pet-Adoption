@@ -54,4 +54,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pet::class);
     }
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
 }
