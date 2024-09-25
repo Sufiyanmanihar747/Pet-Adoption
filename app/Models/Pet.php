@@ -18,7 +18,7 @@ class Pet extends Model
         'status',
         'user_id',
         'species',
-
+        'address_id',
     ];
     public function categories()
     {

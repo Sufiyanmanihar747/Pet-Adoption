@@ -144,11 +144,11 @@
             </div> --}}
 
             <!-- Pet Cards -->
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="row">
                     <!-- Pet Card -->
                     @foreach ($pets as $pet)
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="card pet-card">
                                 @php
                                 $imageArray = explode(',', $pet->image);
@@ -157,7 +157,7 @@
                                 class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{$pet->name}}</h5>
-                                    {{-- <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }}, {{ $pet->address->state }}</p> --}}
+                                    <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }}, {{ $pet->address->state }}</p>
                                     <p class="contact-details">
                                         Species: {{ $pet->categories->name }}<br>
                                         Breed: {{ $pet->breed }} <br>

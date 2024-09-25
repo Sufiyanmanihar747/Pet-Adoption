@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Category;
 use App\Models\Pet;
 use Illuminate\Container\Attributes\Auth;
@@ -28,8 +29,9 @@ class PetController extends Controller
      */
     public function create()
     {
+        $user = FacadesAuth::user();
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('pet.create', compact('categories'));
+        return view('pet.create', compact('categories', 'user'));
     }
 
     /**
@@ -37,6 +39,26 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        // $request->validate([
+        //     'description' => 'required|string',
+        //     'address_id' => 'required|string',
+        //     'city' => 'required_if:address_id,new|string',
+        //     'state' => 'required_if:address_id,new|string',
+        //     'address' => 'required_if:address_id,new|string',
+        // ]);
+        $addressId = $request->input('address_id');
+
+        if ($addressId === 'new') {
+            $address = Address::create([
+                'address' => $request->input('address'),
+                'city' => $request->input('city'),
+                'state' => $request->input('state'),
+                'user_id' => FacadesAuth::id(),
+            ]);
+            $addressId = $address->id;
+        }
+
         $data = $request->only([
             'name',
             'breed',
@@ -62,6 +84,7 @@ class PetController extends Controller
             $imgstring = implode(',', $final);
             $data['image'] = $imgstring;
         }
+        $data['address_id'] = $addressId;
         // dd($data);
         Pet::create($data);
         dump('this is end');
@@ -82,8 +105,9 @@ class PetController extends Controller
     public function edit(string $id)
     {
         $pet = Pet::find($id);
+        $user = FacadesAuth::user();
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('pet.create', compact('pet', 'categories'));
+        return view('pet.create', compact('pet', 'categories', 'user'));
     }
 
     /**
@@ -92,6 +116,22 @@ class PetController extends Controller
     public function update(Request $request, string $id)
     {
         $pet = Pet::find($id);
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'breed' => 'required|string',
+            'age' => 'required|integer',
+            'description' => 'required|string',
+            'gender' => 'required|string',
+            'status' => 'required|string',
+            'species' => 'required|string',
+            'address_id' => 'nullable|exists:addresses,id',
+            'street' => 'nullable|required_if:address_id,new|string',
+            'city' => 'nullable|required_if:address_id,new|string',
+            'state' => 'nullable|required_if:address_id,new|string',
+            'image.*' => 'nullable|image',
+        ]);
+
         $data = $request->only([
             'name',
             'breed',
@@ -105,6 +145,19 @@ class PetController extends Controller
         ]);
         // dd($data);
         $data['user_id'] = FacadesAuth::id();
+
+        $addressId = $request->input('address_id');
+        if ($addressId === 'new') {
+            // Create new address if "new" is selected
+            $address = Address::create([
+                'street' => $request->input('street'),
+                'city' => $request->input('city'),
+                'state' => $request->input('state'),
+            ]);
+            $addressId = $address->id;
+        }
+        $data['address_id'] = $addressId;
+
         if ($request->hasFile('image')) {
 
             $oldImages = explode(',', $pet->image);
@@ -128,8 +181,9 @@ class PetController extends Controller
         } else {
             $data['image'] = $pet->image;
         }
+        // dd($data);
         $pet->update($data);
-        return redirect('pets');
+        return redirect('pets')->with('success', 'Pet updated successfully!');
     }
 
     /**
