@@ -53,7 +53,8 @@
             height: 400px !important;
 
         }
-        .pet-card:hover{
+
+        .pet-card:hover {
             background-color: #8a2be2;
             color: white;
         }
@@ -111,6 +112,10 @@
         .btn-link:hover {
             text-decoration: underline;
         }
+
+        a {
+            text-decoration: none !important;
+        }
     </style>
     <div class="container">
         <h2 class="text-center">Dogs Available For Adoption</h2>
@@ -149,22 +154,25 @@
                     <!-- Pet Card -->
                     @foreach ($pets as $pet)
                         <div class="col-md-3">
-                            <div class="card pet-card">
-                                @php
-                                $imageArray = explode(',', $pet->image);
-                              @endphp
-                              <img src="{{ url('storage/images/' . $imageArray[0]) }}" alt="{{ $pet->title }}" loading="lazy"
-                                class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$pet->name}}</h5>
-                                    <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }}, {{ $pet->address->state }}</p>
-                                    <p class="contact-details">
-                                        Species: {{ $pet->categories->name }}<br>
-                                        Breed: {{ $pet->breed }} <br>
-                                        Age: {{$pet->age}}
-                                    </p>
+                            <a href="{{ route('pets.show', $pet->id) }}">
+                                <div class="card pet-card">
+                                    @php
+                                        $imageArray = explode(',', $pet->image);
+                                    @endphp
+                                    <img src="{{ url('storage/images/' . $imageArray[0]) }}" alt="{{ $pet->title }}"
+                                        loading="lazy" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $pet->name }}</h5>
+                                        <p class="card-text">{{ $pet->address->address }}<br>{{ $pet->address->city }},
+                                            {{ $pet->address->state }}</p>
+                                        <p class="contact-details">
+                                            Species: {{ $pet->categories->name }}<br>
+                                            Breed: {{ $pet->breed }} <br>
+                                            Age: {{ $pet->age }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
 

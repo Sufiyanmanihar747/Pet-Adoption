@@ -96,7 +96,8 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pet =  Pet::find($id);
+        return view('pet.show', compact('pet'));
     }
 
     /**
