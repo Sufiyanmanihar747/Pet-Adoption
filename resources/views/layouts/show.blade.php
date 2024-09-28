@@ -118,7 +118,7 @@
         }
     </style>
     <div class="container">
-        <h2 class="text-center">Dogs Available For Adoption</h2>
+        <h3 class="text-center">Available for Adoption</h3>
         <div class="row">
             <!-- Sidebar Filters -->
             {{-- <div class="col-md-3">

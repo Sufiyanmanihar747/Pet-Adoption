@@ -99,12 +99,20 @@
                         </p>
                         <div>
                             <a href="#" class="btn btn-dark me-3">Adopt now</a>
-                            <a href="#" class="btn btn-outline-dark">Donate</a>
+                            {{-- <a href="#" class="">Donate</a> --}}
+                            {{ html()->submit('Donate')->class('btn btn-outline-dark')->id('order-success-btn') }}
+                            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_khi1E543xQPo9C" data-amount="100"
+                                data-currency="INR" data-name="Pay to Trendbazaar" data-description="Rozerpay" data-image=""
+                                data-theme.color="#4848ff"></script>
+                            {{ html()->form()->close() }}
+
+
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
                         <div class="program-card">
-                            <img src="{{ asset('logos/3d-dog-and-human.png') }}" alt="Adopted Cat" class="img-fluid rounded">
+                            <img src="{{ asset('logos/3d-dog-and-human.png') }}" alt="Adopted Cat"
+                                class="img-fluid rounded">
                             <h5 class="mt-4">From abandoned to adored: The journey of a homeless pet</h5>
                             <a href="#" class="btn btn-dark mt-2">Watch how our program works <i
                                     class="fas fa-play-circle"></i></a>

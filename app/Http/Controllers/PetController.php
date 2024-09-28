@@ -97,7 +97,8 @@ class PetController extends Controller
     public function show(string $id)
     {
         $pet =  Pet::find($id);
-        return view('pet.show', compact('pet'));
+        $pets = Pet::where('species', $pet->species)->where('id', '!=', $id)->get();
+        return view('pet.show', compact('pet','pets'));
     }
 
     /**

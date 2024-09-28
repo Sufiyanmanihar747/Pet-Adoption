@@ -122,15 +122,22 @@
         padding: 1rem 0;
         margin-top: 2rem;
     }
-    .pet-address{
+
+    .pet-address {
         max-width: 524px;
     }
 </style>
 
 {{-- @dump($pet) --}}
 
-<div class="container">
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{ url()->previous() }}" class="text-decoration-none fs-5" style="color: var(--primary-color);">Back</a>
+        <h2 class="text-center text-dark m-0 "></h2>
+        <div></div>
+    </div>
     <section class="pet-profile">
+
         <div class="pet-image-container">
             <div id="productCarousel" class="carousel slide" data-interval="false">
                 <div class="carousel-inner">
@@ -140,7 +147,7 @@
                     @foreach ($imageArray as $key => $image)
                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                             <img src="{{ isset($image) ? url('storage/images/' . $image) : 'null' }}"
-                                class="d-block w-100" style="" alt="{{ $image }}">
+                                class="d-block w-100" style="" alt="{{ $image }}" >
                         </div>
                     @endforeach
                 </div>
@@ -179,15 +186,18 @@
                 {{ $pet->description }}
             </p>
             <div>
-                <p >{{$pet->address->address}}</p>
+                <p>{{ $pet->address->address }}</p>
             </div>
             <a href="">
                 <button class="btn btn-dark w-100">
-                  Adopt Now
+                    Adopt Now
                 </button>
-              </a>        </div>
+            </a>
+        </div>
     </section>
 </div>
+@include('layouts.show')
+
 <script>
     jQuery(document).ready(function($) {
 
