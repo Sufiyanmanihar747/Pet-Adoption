@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\Pet;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\File;
@@ -39,14 +38,6 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // $request->validate([
-        //     'description' => 'required|string',
-        //     'address_id' => 'required|string',
-        //     'city' => 'required_if:address_id,new|string',
-        //     'state' => 'required_if:address_id,new|string',
-        //     'address' => 'required_if:address_id,new|string',
-        // ]);
         $addressId = $request->input('address_id');
 
         if ($addressId === 'new') {

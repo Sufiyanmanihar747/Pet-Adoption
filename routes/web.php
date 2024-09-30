@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PetController;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/{category}', [HomeController::class,'category'])->name('category.category');
 });
-
+Route::resource('payment', PaymentController::class);
 //admin
 Route::middleware(['admin'])->group(function () {
     Route::resource('admin', AdminController::class);

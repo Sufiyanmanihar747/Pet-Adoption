@@ -97,16 +97,12 @@
                         <h1 class="display-4 fw-bold">Bring home a new best friend by adopting</h1>
                         <p class="lead">Adopt a furry companion and add them to your family as your new best friend!
                         </p>
-                        <div>
-                            <a href="#" class="btn btn-dark me-3">Adopt now</a>
+                        <div class="d-flex">
+                            <a href="#" class="btn btn-outline-dark me-3">Adopt now</a>
                             {{-- <a href="#" class="">Donate</a> --}}
-                            {{ html()->submit('Donate')->class('btn btn-outline-dark')->id('order-success-btn') }}
-                            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_khi1E543xQPo9C" data-amount="100"
-                                data-currency="INR" data-name="Pay to Trendbazaar" data-description="Rozerpay" data-image=""
-                                data-theme.color="#4848ff"></script>
-                            {{ html()->form()->close() }}
 
-
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                data-bs-target="#donationModal">Donate</button>
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
@@ -120,8 +116,72 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal for entering the amount -->
+            <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-purple" id="donationModalLabel">Enter Donation Amount</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ html()->form('POST', route('payment.store'))->id('payment-form')->open() }}
+                            @csrf
+                            <div class="mb-3">
+                                <label for="donation-amount" class="form-label text-purple">Amount (INR)</label>
+                                <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+                                <input type="number" class="form-control" id="donation-amount"
+                                    placeholder="Enter amount" required>
+                            </div>
+                            {{ html()->form()->close() }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-dark" id="donate-success-btn"
+                                data-bs-dismiss="modal">Donate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+        <script>
+            document.getElementById('donate-success-btn').onclick = function(e) {
+                e.preventDefault();
+                var rupeeAmount = parseInt(document.getElementById('donation-amount').value);
+                if (rupeeAmount < 100) {
+                    return alert('The minimum donation amount is ₹ 100');
+                }
+                // document.getElementById('donationModal').hide();
+                var options = {
+                    "key": "rzp_test_khi1E543xQPo9C", // Razorpay API key
+                    "amount": rupeeAmount * 100,
+                    "currency": "INR",
+                    "name": "Donate to PawFound",
+                    "description": "Razorpay",
+                    "image": "",
+                    "theme": {
+                        "color": "#8a2be2"
+                    },
+                    "handler": function(response) {
+                        document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+                        document.getElementById('payment-form').submit();
+                    },
+                    "prefill": {
+                        "email": "customer@example.com",
+                        "contact": "1234567890"
+                    },
+                    "notes": {
+                        "address": "Trendy Address"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            }
+        </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>

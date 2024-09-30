@@ -178,7 +178,7 @@
             <div class="form-group col-md-10">
                 <label class="font-weight-bold m-0" for="image[]">Upload Image:</label>
                 <i class="bi bi-info-circle" title="To select multiple ctrl+click"></i>
-                {{ html()->file('image[]')->class('form-control h-75 image-input')->accept('image/*')->multiple()->id('imageInput') }}
+                {{ html()->file('image[]')->class('form-control h-75 image-input')->attribute('accept', 'image/*')->multiple()->id('imageInput') }}
             </div>
         </div>
         <div class="form-row justify-content-center" style="gap: 35px">

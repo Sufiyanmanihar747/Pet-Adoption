@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -49,8 +50,10 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        // $categories = Category::all();
-        // return view('layouts.category',compact('categories'));
+        // dd('this is show of  category');
+        $pets = Pet::where('species', $id)->where('id', '!=', $id)->get();
+        return view('pet.category', compact('pets'));
+
     }
 
     /**

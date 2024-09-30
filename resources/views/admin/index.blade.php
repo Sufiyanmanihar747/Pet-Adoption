@@ -256,7 +256,7 @@
                             '<div class="col-md-2 text-center"><img class="text-center preview-image" src="' +
                             e
                             .target.result +
-                            '" width="125" height="125" style="object-fit: contain; max-width: 100%; max-height: 100%;" alt="Preview Image"></div>'
+                            '" width="125" height="125" style="object-fit: contain;max-height: 100%;" alt="Preview Image"></div>'
                         );
                         imagePreviews.append(preview);
                     };

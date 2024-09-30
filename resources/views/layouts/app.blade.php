@@ -301,16 +301,23 @@
         .razorpay-payment-button {
             display: none;
         }
+
         .btn-dark {
             background-color: #8a2be2 !important;
 
         }
-        h1{
+
+        h1 {
             color: #8a2be2 !important;
         }
-        .text-purple{
+
+        .text-purple {
             color: #8a2be2 !important;
 
+        }
+
+        .bg-purple {
+            background-color: #8a2be2 !important;
         }
     </style>
 </head>
@@ -355,11 +362,11 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav ml-auto gap-5">
                         <li class="nav-item active">
-                            <a class="nav-link" href=""> HOME</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/"> HOME</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#category" role="button" aria-haspopup="true"
-                                aria-expanded="false">CATEGORY</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000#category" role="button"
+                                aria-haspopup="true" aria-expanded="false">CATEGORY</a>
                         </li>
 
                         <li class="nav-item">
