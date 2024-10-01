@@ -329,8 +329,9 @@
         <div id="app">
             {{-- ofcanvas of user --}}
             @if (Auth::user())
-                <div class="offcanvas offcanvas-end p-2" style="z-index: 20000" tabindex="-1" id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas offcanvas-end p-2"
+                    style="z-index: 20000;backdrop-filter: blur(10px);background:none" tabindex="-1"
+                    id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasRightLabel">My Profile</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
@@ -338,18 +339,21 @@
                     </div>
                     <div class="offcanvas-body">
                         <ul class="list-unstyled">
+                            @if (Auth::user()->hasRole('admin'))
+                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                            @endif
+                        </ul>
+                        <ul class="list-unstyled">
                             @if (Auth::user())
                                 {{-- <li><a class="dropdown-item" href="{{ route('order.index') }}">Orders</a></li> --}}
                             @endif
                         </ul>
                     </div>
                     <div class="offcanvas-footer">
-                        <li>
-                            <a class="dropdown-item bg-danger text-white" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                        </li>
+                        <a class="dropdown-item bg-danger text-white" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                     </div>
                 </div>
@@ -362,7 +366,7 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav ml-auto gap-5">
                         <li class="nav-item active">
-                            <a class="nav-link" href="http://127.0.0.1:8000/"> HOME</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/#home"> HOME</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="http://127.0.0.1:8000#category" role="button"
@@ -370,7 +374,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> OFFERS</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000#adopt-love">ABOUT US</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

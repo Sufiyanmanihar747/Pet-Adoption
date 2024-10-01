@@ -46,7 +46,7 @@
         {{-- @include('layouts.products') --}}
 
         {{-- HORIZONTAL --}}
-        {{-- @include('layouts.horizontalscroll') --}}
+        @include('layouts.horizontalscroll')
 
 
         {{-- SUBSCRIBE --}}

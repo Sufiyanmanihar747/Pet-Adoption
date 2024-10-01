@@ -90,7 +90,7 @@
         </style>
 
         <!-- Hero Section -->
-        <section class="hero-section bg-white text-dark py-5">
+        <section class="hero-section bg-white text-dark py-5" id="home">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -155,7 +155,9 @@
                 if (rupeeAmount < 100) {
                     return alert('The minimum donation amount is ₹ 100');
                 }
-                // document.getElementById('donationModal').hide();
+                var donationModal = new bootstrap.Modal(document.getElementById('donationModal'));
+                donationModal.hide();
+                document.body.style.overflow = '';
                 var options = {
                     "key": "rzp_test_khi1E543xQPo9C", // Razorpay API key
                     "amount": rupeeAmount * 100,
