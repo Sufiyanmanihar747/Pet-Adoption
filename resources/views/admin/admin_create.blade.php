@@ -12,7 +12,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="{{ url()->previous() }}" class="text-decoration-none fs-5">Back</a>
-            <h2 class="text-center text-dark m-0 ">{{ isset($user) ? 'Edit Admin' : 'Add Admin' }}</h2>
+            <h2 class="text-center text-dark m-0 ">{{ isset($user) ? 'Edit User' : 'Add User' }}</h2>
             <div></div>
         </div>
 

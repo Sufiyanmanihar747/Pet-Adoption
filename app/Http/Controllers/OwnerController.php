@@ -7,20 +7,19 @@ use App\Models\Category;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
-use Illuminate\Support\Facades\File;
 
-class PetController extends Controller
+
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // dd("this is per");
-        $pets = Pet::all();
-        // $categories = Category::all();
-
-        return view('pet.index', compact('pets'));
+        // dump('this is owner');
+        $owner = FacadesAuth::user();
+        $pets = $owner->pets;
+        return view('owner.index', compact('pets'));
     }
 
     /**
@@ -30,7 +29,7 @@ class PetController extends Controller
     {
         $user = FacadesAuth::user();
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('pet.create', compact('categories', 'user'));
+        return view('owner.create', compact('categories', 'user'));
     }
 
     /**
@@ -78,14 +77,16 @@ class PetController extends Controller
         $data['address_id'] = $addressId;
         // dd($data);
         Pet::create($data);
-        dump('this is end');
-        return redirect('pets');
+        return redirect('owner');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,7 +96,7 @@ class PetController extends Controller
         $pet = Pet::find($id);
         $user = FacadesAuth::user();
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('pet.create', compact('pet', 'categories', 'user'));
+        return view('owner.create', compact('pet', 'categories', 'user'));
     }
 
     /**
@@ -179,25 +180,6 @@ class PetController extends Controller
      */
     public function destroy(string $id)
     {
-        // dd("this is destroy");
-        $pet = Pet::find($id);
-
-        if ($pet->image) {
-            $path = public_path('storage/images/' . $pet->image);
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-            $pet->delete();
-        } else {
-            Pet::destroy($id);
-        }
-        return redirect('pets');
-    }
-
-    public function allPets($id)
-    {
-        $pet =  Pet::find($id);
-        $pets = Pet::where('species', $pet->species)->where('id', '!=', $id)->get();
-        return view('pet.show', compact('pet', 'pets'));
+        //
     }
 }

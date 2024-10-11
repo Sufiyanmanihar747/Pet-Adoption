@@ -37,6 +37,9 @@
 
         @include('layouts.show')
 
+        @include('layouts.horizontalscroll')
+
+
         {{-- SPECIES --}}
 
         @include('layouts.species')
@@ -46,7 +49,6 @@
         {{-- @include('layouts.products') --}}
 
         {{-- HORIZONTAL --}}
-        @include('layouts.horizontalscroll')
 
 
         {{-- SUBSCRIBE --}}

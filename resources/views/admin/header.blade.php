@@ -49,8 +49,7 @@
     {{-- <div class="dropdown show d-flex px-3"> --}}
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
             role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="" alt="" width="32" height="32"
-                class="rounded-circle me-2">
+        
             <strong>{{ Auth::user()->name }}</strong>
         </a>
         <ul class="dropdown-menu text-small shadow-lg bg-dark" aria-labelledby="dropdownMenuLink">

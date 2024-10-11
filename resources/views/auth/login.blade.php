@@ -119,7 +119,7 @@
             <div class="circle small-circle shade5"></div>
         </div>
         <div class="d-flex bg-white mt-5 rounded" id="login-card">
-            <div class="card-body d-flex justify-content-center flex-column">
+            <div class="card-body d-flex justify-content-center flex-column shadow">
                 <form method="POST" action="{{ route('login') }}" onsubmit="return validateForm()">
                     @csrf
                     <div class="form-group">

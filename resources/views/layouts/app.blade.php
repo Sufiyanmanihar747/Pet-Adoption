@@ -201,7 +201,7 @@
         }
 
         .navbar-nav .nav-item:hover .nav-link {
-            color: rgb(14, 163, 14) !important;
+            color: #8a2be2 !important;
         }
     </style>
     <style>
@@ -343,6 +343,15 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
                             @endif
                         </ul>
+                        @if (Auth::user()->hasRole('owner'))
+                            <ul class="list-unstyled">
+                                <li><a class="dropdown-item" href="{{ route('owner.index') }}">My Pets</a></li>
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li><a class="dropdown-item" href="{{ route('owner.create') }}">Add Pet</a></li>
+                            </ul>
+                        @endif
+
                         <ul class="list-unstyled">
                             @if (Auth::user())
                                 {{-- <li><a class="dropdown-item" href="{{ route('order.index') }}">Orders</a></li> --}}
@@ -354,7 +363,8 @@
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
+                        </form>
                     </div>
                 </div>
             @endif
@@ -449,7 +459,75 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('assets/js/custom-script.js') }}"></script>
         <script src="{{ asset('jquery.js') }}"></script>
+        <script>
 
+             // sweetalert
+        document.addEventListener('DOMContentLoaded', function() {
+            var deleteButtons = document.querySelectorAll('.delete-btn');
+
+            deleteButtons.forEach(function(button) {
+                // Add a click event listener to each delete button
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You won\'t be able to revert this!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        customClass: {
+                            confirmButton: 'btn btn-danger',
+                            cancelButton: 'btn btn-outline-secondary'
+                        }
+                    }).then((result) => {
+
+                        if (result.isConfirmed) {
+                            document.getElementById('delete-form-' + button.getAttribute(
+                                'data-admin-id')).submit();
+
+                            Swal.fire(
+                                'Deleted!',
+                                'The record has been deleted.',
+                                'success'
+                            );
+                        }
+                    });
+                });
+            });
+        });
+
+            // show image when user select
+            $(document).ready(function() {
+                $('#imageInput').on('change', function(e) {
+                    var files = e.target.files;
+                    var imagePreviews = $('#imagePreviews');
+
+                    // Clear existing previews
+                    imagePreviews.empty();
+
+                    // Limit to 5 images
+                    var maxImages = 4;
+                    var numImages = Math.min(files.length, maxImages);
+
+                    for (var i = 0; i < numImages; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var preview = $(
+                                '<div class="col-md-2 text-center"><img class="text-center preview-image" src="' +
+                                e
+                                .target.result +
+                                '" width="125" height="125" style="object-fit: contain;max-height: 100%;" alt="Preview Image"></div>'
+                            );
+                            imagePreviews.append(preview);
+                        };
+                        reader.readAsDataURL(files[i]);
+                    }
+                });
+            });
+        </script>
 
 </body>
 

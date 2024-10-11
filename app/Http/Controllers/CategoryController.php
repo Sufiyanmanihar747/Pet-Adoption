@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         // dd('this is categroy');
         $categories = Category::all();
-        return view('admin.category',compact('categories'));
+        return view('admin.category', compact('categories'));
     }
 
     /**
@@ -32,7 +32,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->only(['name', 'image','description']);
+        $data = request()->only(['name', 'image', 'description']);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $originalName = $image->getClientOriginalName();
@@ -53,7 +53,6 @@ class CategoryController extends Controller
         // dd('this is show of  category');
         $pets = Pet::where('species', $id)->where('id', '!=', $id)->get();
         return view('pet.category', compact('pets'));
-
     }
 
     /**
@@ -72,7 +71,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $currentImages = $category->image;
-        $data = request()->only(['name', 'image','description']);
+        $data = request()->only(['name', 'image', 'description']);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $originalName = $image->getClientOriginalName();
@@ -107,5 +106,11 @@ class CategoryController extends Controller
             Category::destroy($id);
         }
         return redirect('category');
+    }
+
+    public function categoryId($id)
+    {
+        $pets = Pet::where('species', $id)->where('id', '!=', $id)->get();
+        return view('pet.category', compact('pets'));
     }
 }

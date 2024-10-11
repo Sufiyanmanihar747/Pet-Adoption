@@ -226,7 +226,7 @@
         // datatable
         $(document).ready(function() {
             $('#myDataTable').DataTable({
-                scrollY: '410px',
+                scrollY: '490px',
             });
         });
 
