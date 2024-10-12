@@ -18,13 +18,13 @@
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->role }}</td>
                     <td class="text-center">{{ $user->phone }}</td>
-                    <td class="text-center d-flex gap-2">
-                        <a href="{{ route('admin.edit', [$user->id]) }}" class="btn btn-outline-success p-1 px-2">Edit</a>
+                    <td class="text-center d-flex gap-2 justify-content-center">
+                        <a href="{{ route('admin.edit', [$user->id]) }}" class="btn btn-primary p-1 px-2">Edit</a>
                         <form id="delete-form-{{ $user->id }}" action="{{ route('admin.destroy', $user->id) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')
-                            <a href="#" class="btn btn-outline-danger delete-btn"
+                            <a href="#" class="btn btn-danger delete-btn"
                                 data-admin-id="{{ $user->id }}">Delete</a>
                         </form>
                     </td>

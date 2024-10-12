@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adoption;
+use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -83,5 +85,22 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+    public function request(){
+        $adoptionRequests = Adoption::all();
+        return view('admin.adoptions',compact('adoptionRequests'));
+    }
+    public function accept($id){
+        $adoption = Adoption::findOrFail($id);
+        $adoption->status = 'approved';
+        $adoption->save();
+        $pet = Pet::find($adoption->pet_id);
+        $pet->status = 'adopted';
+        $pet->save();
+        return redirect('request');
+    }
+    public function  reject($id){
+        Adoption::destroy($id);
+        return redirect()->back();
     }
 }

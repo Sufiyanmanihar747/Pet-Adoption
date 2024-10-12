@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Authentication
+class UserAuth
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class Authentication
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if (Auth::user() && Auth::user()->role == 'user') {
-
+        dump('user middleware');
+        if (Auth::check()) {
             return $next($request);
         }
-        return $next($request);    }
+        return redirect()->route('login');
+    }
 }

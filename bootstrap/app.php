@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Middleware\AdminAuth;
-use App\Http\Middleware\Authentication;
 use App\Http\Middleware\OwnerAuth;
-use Illuminate\Auth\Middleware\Authenticate;
+use App\Http\Middleware\UserAuth;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -21,8 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->appendToGroup('owner',[
             OwnerAuth::class,
         ]);
-        $middleware->appendToGroup('auth',[
-            Authentication::class,
+        $middleware->appendToGroup('user',[
+            UserAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

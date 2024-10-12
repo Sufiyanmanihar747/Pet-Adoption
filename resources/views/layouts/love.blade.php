@@ -145,7 +145,6 @@
                 mission to provide every dog and cat a home before 2035. It’s just one of the many ways PawFound!
                 gives back and helps you become a part of something larger. Join ThePetStar Community and help set up
                 Pet houses in your surrounding for strays.</p>
-            <a href="#" class="btn btn-light btn-lg">Adopt a pet</a>
         </div>
     </div>
 </section>

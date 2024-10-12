@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -29,11 +29,5 @@ class HomeController extends Controller
         $categories = Category::all();
         $pets = Pet::all();
         return view('welcome',compact('categories','pets'));
-    }
-
-    public function category($category)
-    {
-        dump($category);
-        dd('this is category');
     }
 }

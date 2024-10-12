@@ -359,7 +359,7 @@
                         </ul>
                     </div>
                     <div class="offcanvas-footer">
-                        <a class="dropdown-item bg-danger text-white" href="{{ route('logout') }}"
+                        <a class="dropdown-item bg-danger text-white p-2" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>

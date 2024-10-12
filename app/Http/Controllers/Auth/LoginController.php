@@ -39,10 +39,13 @@ class LoginController extends Controller
     }
     protected function authenticated($request, $user)
     {
+        if ($redirectTo = session()->get('url.intended')) {
+            return redirect($redirectTo);
+        }
         // dd($request);
         if ($user->hasRole('admin')) {
             // dd("this is login controller");
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.dashboard');
         } elseif ($user->hasRole('owner')) {
             return redirect()->route('home');
         } elseif ($user->hasRole('user')) {

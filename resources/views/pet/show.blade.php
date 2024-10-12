@@ -147,7 +147,7 @@
                     @foreach ($imageArray as $key => $image)
                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                             <img src="{{ isset($image) ? url('storage/images/' . $image) : 'null' }}"
-                                class="d-block w-100" style="" alt="{{ $image }}" >
+                                class="d-block w-100" style="" alt="{{ $image }}">
                         </div>
                     @endforeach
                 </div>
@@ -188,11 +188,14 @@
             <div>
                 <p>{{ $pet->address->address }}</p>
             </div>
-            <a href="">
-                <button class="btn btn-dark w-100">
-                    Adopt Now
-                </button>
-            </a>
+            @if ($pet->status != 'adopted')
+                <a href="{{ route('adopt.show', [$pet->id]) }}">
+                    <button class="btn btn-dark w-100">
+                        Adopt Now
+                    </button>
+                </a>
+            @endif
+
         </div>
     </section>
 </div>

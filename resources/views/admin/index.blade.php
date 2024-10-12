@@ -167,7 +167,8 @@
         @include('admin.header')
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <img src="{{ asset('logos/logo4.png') }}" style="width: 75px;overflow: hidden;" alt="">
+                <a href="{{ url('/') }}"><img src="{{ asset('logos/logo4.png') }}"
+                        style="width: 75px;overflow: hidden;" alt=""></a>
                 <button class="btn btn-dark" id="togglebtn" onclick="toggleSidebar()">&#9776;</button>
             </nav>
             <div class="container-fluid">

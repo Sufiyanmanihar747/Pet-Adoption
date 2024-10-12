@@ -133,7 +133,7 @@
                     <!-- Pet Card -->
                     @foreach ($pets as $pet)
                         <div class="col-md-3">
-                            <a href="{{ route('pets.show', $pet->id) }}">
+                            <a href="{{ route('pets.allPets', $pet->id) }}">
                                 <div class="card pet-card">
                                     @php
                                         $imageArray = explode(',', $pet->image);
