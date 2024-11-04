@@ -42,7 +42,7 @@
 
         {{-- SPECIES --}}
 
-        @include('layouts.species')
+        {{-- @include('layouts.species') --}}
 
         <!--- #thought-->
 
