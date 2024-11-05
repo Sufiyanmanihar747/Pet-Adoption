@@ -27,9 +27,11 @@
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 70px;
+            /* margin-top: 70px; */
 
         }
+
+        @media (max-width: 767px) {}
     </style>
 
     <div class="scroll-container">

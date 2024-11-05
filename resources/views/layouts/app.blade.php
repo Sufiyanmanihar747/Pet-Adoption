@@ -83,7 +83,8 @@
             }
 
             .navbar {
-                display: none;
+                display: none !important;
+                background-color: red
             }
 
             body {
@@ -323,145 +324,140 @@
 </head>
 
 <body class="bg-white">
+
     <div id="app">
         {{-- ofcanvas of user --}}
-
-        <div id="app">
-            {{-- ofcanvas of user --}}
-            @if (Auth::user())
-                <div class="offcanvas offcanvas-end p-2"
-                    style="z-index: 20000;backdrop-filter: blur(10px);background:none" tabindex="-1"
-                    id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">My Profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="list-unstyled">
-                            @if (Auth::user()->hasRole('admin'))
-                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
-                            @endif
-                        </ul>
-                        @if (Auth::user()->hasRole('owner'))
-                            <ul class="list-unstyled">
-                                <li><a class="dropdown-item" href="{{ route('owner.index') }}">My Pets</a></li>
-                            </ul>
-                            <ul class="list-unstyled">
-                                <li><a class="dropdown-item" href="{{ route('owner.create') }}">Add Pet</a></li>
-                            </ul>
-                        @endif
-
-                        <ul class="list-unstyled">
-                            @if (Auth::user())
-                                {{-- <li><a class="dropdown-item" href="{{ route('order.index') }}">Orders</a></li> --}}
-                            @endif
-                        </ul>
-                    </div>
-                    <div class="offcanvas-footer">
-                        <a class="dropdown-item bg-danger text-white p-2" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
-                        </form>
-                    </div>
-                </div>
-            @endif
-
-            <nav class="navbar navbar-expand-lg p-0 px-4"
-                style="height: 70px;position: fixed; z-index: 1000;width: 100vw;backdrop-filter: blur(10px);background-color: #ffffff69;">
-                <a class="navbar-brand p-0 ml-5" href=""><img src="{{ asset('logos/logo4.png') }}"
-                        style="width: 110px;overflow: hidden;" alt="" class="mt-2"></a>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav ml-auto gap-5">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="http://127.0.0.1:8000/#home"> HOME</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="http://127.0.0.1:8000#category" role="button"
-                                aria-haspopup="true" aria-expanded="false">CATEGORY</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://127.0.0.1:8000#adopt-love">ABOUT US</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"></i> CONTACT US</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">General Inquiry</a>
-                                <a class="dropdown-item" href="#">Sales</a>
-                                <a class="dropdown-item" href="#">Support</a>
-                            </div>
-                        </li>
+        {{-- @if (Auth::user()) --}}
+        <div class="offcanvas offcanvas-end p-2" style="z-index: 20000;backdrop-filter: blur(10px);background:none"
+            tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">My Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="list-unstyled">
+                    @if (Auth::user() && Auth::user()->hasRole('admin'))
+                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                    @endif
+                </ul>
+                @if (Auth::user() && Auth::user()->hasRole('owner'))
+                    <ul class="list-unstyled">
+                        <li><a class="dropdown-item" href="{{ route('owner.index') }}">My Pets</a></li>
                     </ul>
-                    <ul class="ml-auto navbar-nav">
-                        @if (Auth::user())
-                            <li class="nav-item mr-4">
-                                {{-- <a class="nav-link" href="{{ route('cart.index') }}"><i
-                                    class="fas fa-shopping-cart"></i><span
-                                    class="cart-count">{{ DB::table('cart_items')->where('user_id', Auth::id())->count() }}</span></a> --}}
-                            </li>
-                            <li>
-                                <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                    aria-controls="offcanvasRight" class="nav-link" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                            @else
-                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}<i
-                                        class="fas fa-sign-in-alt"></i></a>
-                        @endif
-                        </li>
+                    <ul class="list-unstyled">
+                        <li><a class="dropdown-item" href="{{ route('owner.create') }}">Add Pet</a></li>
                     </ul>
-                </div>
-            </nav>
-
-            <nav class="first-nav navbar-expand-lg navbar-light p-0"
-                style="z-index: 1000;backdrop-filter: blur(10px);background-color: #ffffff69;">
-                {{-- <a class="navbar-brand" href="{{ route('home.index') }}"> --}}
-                <i class="fas fa-store navbar-icon"></i>
-                </a>
-                {{-- <a class="navbar-icon" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
-      <a class="navbar-icon" href="{{ route('order.index') }}"><i class="fas fa-shopping-bag"></i></a> --}}
-                @if (Auth::user())
-                    <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight" class="navbar-icon" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        <i class="fas fa-user"></i>
-                    </a>
-                @else
-                    <a class="navbar-icon" href="{{ route('login') }}"><i class="fas fa-user"></i></a>
                 @endif
 
-                </a>
-            </nav>
-            <div class="mobile-logo">
-                <img src="http://127.0.0.1:8000/logos/trendbazaar-high-resolution-logo-transparent.png"
-                    style="width: 144px;overflow: hidden;margin-left: 10px;" alt="" class="mt-1">
-                <a class="navbar-icon" href="#"><i class="fas fa-search"></i></a>
+                <ul class="list-unstyled">
+                    @if (Auth::user())
+                        {{-- <li><a class="dropdown-item" href="{{ route('order.index') }}">Orders</a></li> --}}
+                    @endif
+                </ul>
             </div>
-            <main class="pt-5 main-padding">
-                @yield('content')
-            </main>
+            <div class="offcanvas-footer">
+                <a class="dropdown-item bg-danger text-white p-2" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
+                </form>
+            </div>
         </div>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="{{ asset('assets/js/custom-script.js') }}"></script>
-        <script src="{{ asset('jquery.js') }}"></script>
-        <script>
+        {{-- @endif --}}
 
-             // sweetalert
+        <nav class="navbar navbar-expand-lg p-0 px-4"
+            style="height: 70px;position: fixed; z-index: 1000;width: 100vw;backdrop-filter: blur(10px);background-color: #ffffff69;">
+            <a class="navbar-brand p-0 ml-5" href=""><img src="{{ asset('logos/logo4.png') }}"
+                    style="width: 110px;overflow: hidden;" alt="" class="mt-2"></a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ml-auto gap-5">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://127.0.0.1:8000/#home"> HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="http://127.0.0.1:8000#category" role="button" aria-haspopup="true"
+                            aria-expanded="false">CATEGORY</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000#adopt-love">ABOUT US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"></i> CONTACT US</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">General Inquiry</a>
+                            <a class="dropdown-item" href="#">Sales</a>
+                            <a class="dropdown-item" href="#">Support</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="ml-auto navbar-nav">
+                    @if (Auth::user())
+                        <li class="nav-item mr-4">
+                            {{-- <a class="nav-link" href="{{ route('cart.index') }}"><i
+                                    class="fas fa-shopping-cart"></i><span
+                                    class="cart-count">{{ DB::table('cart_items')->where('user_id', Auth::id())->count() }}</span></a> --}}
+                        </li>
+                        <li>
+                            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight" class="nav-link" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+                        @else
+                            <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}<i
+                                    class="fas fa-sign-in-alt"></i></a>
+                    @endif
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="first-nav navbar-expand-lg navbar-light p-0"
+            style="z-index: 1000;backdrop-filter: blur(10px);background-color: #ffffff69;">
+            {{-- <a class="navbar-brand" href="{{ route('home.index') }}"> --}}
+            <i class="fas fa-store navbar-icon"></i>
+            </a>
+            {{-- <a class="navbar-icon" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
+      <a class="navbar-icon" href="{{ route('order.index') }}"><i class="fas fa-shopping-bag"></i></a> --}}
+            @if (Auth::user())
+                <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight" class="navbar-icon" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="fas fa-user"></i>
+                </a>
+            @else
+                <a class="navbar-icon" href="{{ route('login') }}"><i class="fas fa-user"></i></a>
+            @endif
+
+            </a>
+        </nav>
+        <div class="mobile-logo">
+            <img src="http://127.0.0.1:8000/logos/trendbazaar-high-resolution-logo-transparent.png"
+                style="width: 144px;overflow: hidden;margin-left: 10px;" alt="" class="mt-1">
+            <a class="navbar-icon" href="#"><i class="fas fa-search"></i></a>
+        </div>
+        <main class="pt-5 main-padding">
+            @yield('content')
+        </main>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('assets/js/custom-script.js') }}"></script>
+    <script src="{{ asset('jquery.js') }}"></script>
+    <script>
+        // sweetalert
         document.addEventListener('DOMContentLoaded', function() {
             var deleteButtons = document.querySelectorAll('.delete-btn');
 
@@ -499,35 +495,35 @@
             });
         });
 
-            // show image when user select
-            $(document).ready(function() {
-                $('#imageInput').on('change', function(e) {
-                    var files = e.target.files;
-                    var imagePreviews = $('#imagePreviews');
+        // show image when user select
+        $(document).ready(function() {
+            $('#imageInput').on('change', function(e) {
+                var files = e.target.files;
+                var imagePreviews = $('#imagePreviews');
 
-                    // Clear existing previews
-                    imagePreviews.empty();
+                // Clear existing previews
+                imagePreviews.empty();
 
-                    // Limit to 5 images
-                    var maxImages = 4;
-                    var numImages = Math.min(files.length, maxImages);
+                // Limit to 5 images
+                var maxImages = 4;
+                var numImages = Math.min(files.length, maxImages);
 
-                    for (var i = 0; i < numImages; i++) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            var preview = $(
-                                '<div class="col-md-2 text-center"><img class="text-center preview-image" src="' +
-                                e
-                                .target.result +
-                                '" width="125" height="125" style="object-fit: contain;max-height: 100%;" alt="Preview Image"></div>'
-                            );
-                            imagePreviews.append(preview);
-                        };
-                        reader.readAsDataURL(files[i]);
-                    }
-                });
+                for (var i = 0; i < numImages; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var preview = $(
+                            '<div class="col-md-2 text-center"><img class="text-center preview-image" src="' +
+                            e
+                            .target.result +
+                            '" width="125" height="125" style="object-fit: contain;max-height: 100%;" alt="Preview Image"></div>'
+                        );
+                        imagePreviews.append(preview);
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
             });
-        </script>
+        });
+    </script>
 
 </body>
 
